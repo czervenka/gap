@@ -41,6 +41,8 @@ def symlink_module(path):
         if not exists(link_info[0]):
             print 'Error creating link %s' % link_info[0]
             return
+        if exists(link_info[1]):
+            print "Error creating link %r, there is another file with the same name." % link_info[1]
         print '%s -> %s' % link_info
         symlink(*link_info)
 
@@ -56,9 +58,13 @@ def list_distribution_paths(dist_name):
         return []
     distribution = pkg_resources.get_distribution(dist_name)
     path = join(distribution.location, distribution.egg_name() + '.egg-info', 'top_level.txt')
+    if not exists(path):
+        path = join(distribution.location, dist_name + '.egg-info', 'top_level.txt')
     if path.startswith(venv_path):
         paths = []
         for package in [ line.strip() for line in open(path).readlines() ]:
+            if not package:
+                continue
             path = join(distribution.location, package)
             if not exists(path):
                 try:
