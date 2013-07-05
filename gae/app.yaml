@@ -1,0 +1,10 @@
+application: czervenka
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: True
+
+builtins:
+- appstats: on #/_ah/stats/
+- remote_api: on #/_ah/remote_api/
+- deferred: on  # for deferred.defer to work
