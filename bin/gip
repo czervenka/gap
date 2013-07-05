@@ -1,5 +1,15 @@
 #!/usr/bin/env python2
 
+__author__ = 'Robin Gottfried <google@kebet.cz>'
+
+"""
+Simple pip wraper to work with virtual environment and google app engine.
+
+Use it the same way as pip. Each time gip is called, it updates symlinks to you application src/lib.
+
+While creating / removing symlinks, gip does not touch any regular files / directories in src/lib
+"""
+
 from sys import exit, argv
 from os.path import join, basename, dirname, exists, islink
 from os import symlink, environ, listdir, unlink
@@ -12,19 +22,21 @@ if not 'VIRTUAL_ENV' in environ:
 
 IGNORED_DISTS = set(['setuptools', 'ipython', 'argparse', 'pip'])
 
+LIB_PATH = join(dirname(dirname(__file__)), 'src', 'lib')
+
 
 def unsymlink_module(path):
     filename = basename(path)
-    link_path = join(dirname(dirname(__file__)), 'gae', 'lib', filename)
+    link_path = join(LIB_PATH, filename)
     if islink(link_path):
         print 'Unlinking obsolete ->%s' % link_path
         unlink(link_path)
-    else:
+    elif not exists(link_path):
         print 'Path %s not found' % link_path
 
 
 def symlink_module(path):
-    link_info = (path, join(dirname(dirname(__file__)), 'gae', 'lib', basename(path)))
+    link_info = (path, join(LIB_PATH, basename(path)))
     if not islink(link_info[1]):
         if not exists(link_info[0]):
             print 'Error creating link %s' % link_info[0]
@@ -62,30 +74,36 @@ def list_distribution_paths(dist_name):
         return []
     return paths
 
+pip_exception = None
+
 try:
     pip.main(argv[1:])
-except (Exception, SystemExit), e:
-    print e
+except (Exception, SystemExit), pip_exception:
+    pass
 
-print '\n\nUpdating symlinks ...'
+if len(argv) > 1 and argv[1] in ('install' , 'uninstall'):
+    print '\n\nUpdating symlinks ...'
 
-linked_libs = ([ lib for lib in listdir(join('gae', 'lib')) if not lib == '__init__.py' ])
+    linked_libs = ([ lib for lib in listdir(LIB_PATH) ])
 # print 'Linked libs: %s' % linked_libs
 
-venv_path = environ['VIRTUAL_ENV']
-installed_libs = {}
-for dist in list_distributions():
-    for path in list_distribution_paths(dist):
-        filename = basename(path)
-        installed_libs[filename] = path
+    venv_path = environ['VIRTUAL_ENV']
+    installed_libs = {}
+    for dist in list_distributions():
+        for path in list_distribution_paths(dist):
+            filename = basename(path)
+            installed_libs[filename] = path
 # print 'Installed libs: %s' % installed_libs
 
-for lib in linked_libs:
-    if not lib in installed_libs:
-        unsymlink_module(lib)
+    for lib in linked_libs:
+        if not lib in installed_libs:
+            unsymlink_module(lib)
 
-for lib, path in installed_libs.items():
-    if not lib in linked_libs:
-        symlink_module(path)
+    for lib, path in installed_libs.items():
+        if not lib in linked_libs:
+            symlink_module(path)
 
-print 'Symlinks updated.'
+    print 'done'
+
+if pip_exception:
+    raise pip_exception
