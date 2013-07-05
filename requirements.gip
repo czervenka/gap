@@ -1,0 +1,2 @@
+dateutils
+-e git+https://github.com/czervenka/gapi.git#egg=gAPI
