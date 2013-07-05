@@ -9,7 +9,7 @@ If you are missing
 * cooperation of appengine and virtualenv,
 * single python way to add a path to sys.paths,
 
-then this barebone could be at least an inspiration.
+then this barebone could be at least an inspiration for you.
 
 How to use it.
 --
@@ -29,4 +29,7 @@ Any ideas, thoughts, fixes (specially corrections of my english :) are welcome!
 
 Disclaimer
 --
-Of course - this is offered as-is. I can take no responsibilty for improper as well as proper use.
+Of course ...
+This code is published in hope that someone will find it usefull but it is
+provided as-is and I can take no responsibilty for improper as well as proper
+use.
