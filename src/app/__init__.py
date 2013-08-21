@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# @author Robin Gottfried <google@kebet.cz>
+# part of gap project (https://github.com/czervenka/gap)
+
 __author__ = 'Robin Gottfried <google@kebet.cz>'
 
 __all__ = ['prepare_environment']

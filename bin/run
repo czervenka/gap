@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 # @author Robin Gottfried <google@kebet.cz>
+# part of gap project (https://github.com/czervenka/gap)
 
 cd $(dirname `dirname $0`)
 dev_appserver.py gae --api_port 9465 "$@" --datastore_path=tmp/test.db --log_level=debug
