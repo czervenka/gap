@@ -98,8 +98,16 @@ def list_distribution_paths(dist_name):
 
 pip_exception = None
 
+if len(argv) >= 2 and argv[1].rsplit('.', 1)[-1] == 'gip':
+    pip_args = ['install']
+    pip_args += argv[2:]
+    pip_args.extend(['-r', argv[1]])
+else:
+    pip_args = argv[1:]
+
+print repr(pip_args)
 try:
-    pip.main(argv[1:])
+    pip.main(pip_args)
 except (Exception, SystemExit), pip_exception:
     pass
 
