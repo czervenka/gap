@@ -16,5 +16,5 @@
 # @author Robin Gottfried <google@kebet.cz>
 # part of gap project (https://github.com/czervenka/gap)
 
-cd $(dirname `dirname $0`)/gae
+cd $(dirname `dirname $0`)/src
 remote_api_shell.py -s localhost:9465 # --ipython
