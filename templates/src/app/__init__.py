@@ -32,6 +32,6 @@ prepare_environment()
 import webapp2
 from google.appengine.ext.webapp import util
 import config
-from .routes import routes
+from routes import routes
 
 handler = webapp2.WSGIApplication(routes=routes, debug=config.DEBUG)

@@ -2,7 +2,7 @@ __author = 'czervenka at github.com'
 import json
 import webapp2
 from google.appengine.api import taskqueue
-from utils.imports import import_class
+from gap.utils.imports import import_class
 
 
 def defer(callback, *args, **kwargs):

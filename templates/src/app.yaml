@@ -1,4 +1,4 @@
-application: none
+application: {< application_id >}
 version: 1
 runtime: python27
 api_version: 1
@@ -11,7 +11,9 @@ libraries:
   version: latest
 
 handlers:
-- url: /static  # configured in config.py as well
+# configured in config.py as well
+- url: /static
   static_dir: static
+# main app handler (uses app.routes to get main routes)
 - url: /.*
-  script: app.handler  # main app handler (uses app.routes to get main routes)
+  script: app.handler

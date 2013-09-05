@@ -1,6 +1,7 @@
+import webapp2
+
 def as_view(func, methods=['get', 'post']):
 
-    import webapp2
 
     def _handle(self, *args, **kwargs):
         response = func(self.request, self.response, *args, **kwargs)
