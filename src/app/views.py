@@ -1,3 +1,4 @@
+from app.settings import settings
 from utils.decorators import as_view
 from app.template import get_template
 
@@ -6,6 +7,7 @@ from app.template import get_template
 def welcome_screen(request, response):
     return get_template("homepage.html").render({
         'project_name': 'Example project',
+        'version': settings['version']
     })
 
 @as_view
