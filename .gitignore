@@ -1,3 +1,5 @@
 *.pyc
 *.pyo
 .*
+node_modules
+src/static/js
