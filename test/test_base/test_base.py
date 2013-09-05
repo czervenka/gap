@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from unittest import TestCase
 
 from google.appengine.ext import testbed
@@ -21,7 +20,8 @@ class TestBase(TestCase):
         self.testbed.activate()
 
         # Select all the needed service stubs
-        self.testbed.init_datastore_v3_stub(datastore_file='var/datastore.sqlite', use_sqlite=True)
+        self.testbed.init_datastore_v3_stub(datastore_file='tmp/datastore.sqlite', use_sqlite=True)
+        self.testbed.init_memcache_stub()
 
     def tearDown(self):
         self.testbed.deactivate()

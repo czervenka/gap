@@ -2,8 +2,8 @@
 pushd . > /dev/null
 cd "$( dirname "$0" )/../test"
 
-nosetests -c nose.cfg --with-gae --gae-application="../src"
+nosetests -c nose.cfg --with-gae --gae-application="../src" --without-sandbox
 
-# nosetests -c nose.cfg --processes=4 --process-timeout=60 --where=../src $PWD/test_tasks_sequential.py $PWD/test_events_sequential.py $PWD/test_sync.py
+# --processes=4 --process-timeout=60 test_1_name.py test_2_name.py
 
 popd > /dev/null

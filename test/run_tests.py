@@ -23,9 +23,9 @@ def run_all(argv=None):
 
     argv  = (set(argv) | {
         '--where=%s' % dirname(abspath(src.__file__)),
+        '-c nose.cfg',
         '--with-gae',
         '--gae-application=%s' % dirname(abspath(src.__file__)),
-        '--nologcapture',
         '--verbose',
         '--without-sandbox'
     }) - {'./run_tests.py'}

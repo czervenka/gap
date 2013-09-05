@@ -7,7 +7,7 @@ BASIC USE
 ---------
     from models.config import settings
     version = settings['version']  # read settings
-    settinges['version'] = '1'  # stores settings
+    settings['version'] = '1'  # stores settings
 
 INITIALIZATION
 --------------
@@ -21,6 +21,7 @@ from google.appengine.api import namespace_manager
 
 class AppSettings(ndb.Model):
     version = ndb.StringProperty(default='0.1', indexed=False)
+
 
 class LazyAppSettings(object):
     """
