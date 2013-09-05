@@ -29,6 +29,7 @@ then this bare-bone could be at least an inspiration for you.
 * `bin/run` starts dev app server
 * navigate to [http://localhost:8080](http://localhost:8080) and enjoy!
 
+## Thank you!
 Any ideas, thoughts, fixes (specially corrections of my english :) are welcome!
 
 ## Disclaimer
