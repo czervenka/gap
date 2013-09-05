@@ -1,0 +1,25 @@
+{
+  "name": "gap-angular",
+  "version": "1.0.0",
+  "homepage": "https://github.com/krtek/gap",
+  "authors": [
+    "Lukas Marek <lukas.marek@gmail.com>"
+  ],
+  "description": "GAP Angular application",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "v1.2.0-rc.1",
+    "angular-resource": "v1.2.0-rc.1",
+    "angular-route": "v1.2.0-rc.1",
+    "bootstrap": "v2.3.2",
+    "jquery": "~2.0.3"
+  }
+}

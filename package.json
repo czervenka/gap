@@ -1,0 +1,16 @@
+{
+  "name": "gap-angular",
+  "version": "1.0.0",
+  "homepage": "https://github.com/krtek/gap",
+  "authors": [
+    "Lukas Marek <lukas.marek@gmail.com>"
+  ],
+  "description": "GAP Angular application",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-watch": "~0.5.3"
+  }
+}

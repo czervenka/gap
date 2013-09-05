@@ -1,9 +1,48 @@
-<html>
-    <head>
-        <title>{{ project_name }}</title>
-    </head>
-    <body>
-        <img src="{{ STATIC_URL }}/logo.png" />
-        Welcome to project "{{ project_name }}"!
-    </body>
+<html ng-app="gap">
+<head>
+    <title>{{ project_name }}</title>
+    <script src="/static/js/libs/angular/angular.js"></script>
+    <script src="/static/js/libs/angular-route/angular-route.js"></script>
+    <script src="/static/js/libs/angular-resource/angular-resource.js"></script>
+    <script src="/static/js/libs/jquery/jquery.js"></script>
+    <script src="/static/js/libs/bootstrap/docs/assets/js/bootstrap.js"></script>
+
+    <script src="/static/js/app/app.js"></script>
+    <script src="/static/js/app/controllers.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/js/libs/bootstrap/docs/assets/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="/static/js/libs/bootstrap/docs/assets/css/bootstrap-responsive.css" rel="stylesheet" media="screen">
+</head>
+<body>
+<div class="container">
+    <div class="navbar">
+        <!-- Put navbar here -->
+    </div>
+    <div class="hero-unit">
+        <div class="row">
+            <h1>{{ project_name }}</h1>
+            <br>
+
+            <p>Welcome to "{{ project_name }}"!</p>
+
+            <p>Feel free to modify the template to see what happens. Documentation can be found <b>README.md</b>
+                in project root.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span2">
+            ng-view:
+        </div>
+        <div ng-view>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Fragaria 2013</p>
+    </footer>
+</div>
+
+</body>
 </html>
