@@ -1,5 +1,5 @@
 from datetime import timedelta
-from test_base import TestBase
+from common.test_base import TestBase
 
 from utils.imports import import_class
 

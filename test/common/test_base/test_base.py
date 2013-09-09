@@ -12,16 +12,18 @@ class TestBase(TestCase):
     # Allow concurrent run of fixtures
     _multiprocess_can_split_ = True
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(cls):
         # Begin with testbed instance
-        self.testbed = testbed.Testbed()
+        cls.testbed = testbed.Testbed()
 
         # Activate the testbed environment, this will prepare the service stubs
-        self.testbed.activate()
+        cls.testbed.activate()
 
         # Select all the needed service stubs
-        self.testbed.init_datastore_v3_stub(datastore_file='tmp/datastore.sqlite', use_sqlite=True)
-        self.testbed.init_memcache_stub()
+        cls.testbed.init_datastore_v3_stub(datastore_file='tmp/datastore.sqlite', use_sqlite=True)
+        cls.testbed.init_memcache_stub()
 
-    def tearDown(self):
-        self.testbed.deactivate()
+    @classmethod
+    def tearDownClass(cls):
+        cls.testbed.deactivate()

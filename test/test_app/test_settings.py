@@ -1,5 +1,5 @@
 from app.settings import settings
-from test_base import TestBase
+from common.test_base import TestBase
 
 
 class TestSettings(TestBase):

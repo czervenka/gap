@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import requests
 import json
-from test_base import TestBase
+
+import requests
+
+from common.test_base.test_base import TestBase
 
 
 class TestJsonApiBase(TestBase):
