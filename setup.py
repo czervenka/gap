@@ -20,8 +20,7 @@ setup(
     url='https://github.com/czervenka/gap',
     packages=['gap', 'gap.utils'],
     scripts=['gap/bin/gap'],
-    # data_files=collect_files('templates', 'gap'),
-    package_data={'gap': ['templates/*']},
+    zip_safe = False,
     include_package_data=True,
     requires=[],
 )
