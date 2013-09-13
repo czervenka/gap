@@ -18,8 +18,9 @@
 
 __author__ = 'Robin Gottfried <google@kebet.cz>'
 
+from os.path import join, dirname
 from gap.utils import gip
 
 
 if __name__ == '__main__':
-    gip.run()
+    gip.run(join(dirname(dirname(__file__)), 'src'))

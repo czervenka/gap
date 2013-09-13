@@ -1,5 +1,5 @@
 from utils.decorators import as_view
-from app.template import get_template
+from gap.template import get_template
 
 
 @as_view

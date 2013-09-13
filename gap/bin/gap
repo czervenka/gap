@@ -8,7 +8,7 @@ from pkg_resources import resource_filename
 from shutil import copytree
 
 
-TEMPLATES_DIR = join(dirname(dirname(__file__)), 'templates')
+TEMPLATES_DIR = 'templates'
 
 CONTEXT = {}
 
@@ -40,6 +40,8 @@ def start_project(project_name, path=None):
     _copy_resource(join(TEMPLATES_DIR, 'src'), join(path, 'src'), context)
     _copy_resource(join(TEMPLATES_DIR, 'bin'), join(path, 'bin'), context)
     os.mkdir(join(path, '.tmp'))
+    from gap.utils import gip
+    gip.update_symlinks(join(path, 'src', 'lib'))
 
 
 def start_app(app_name):
