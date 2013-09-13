@@ -1,3 +1,3 @@
 routes = (
-    ('.*', 'app.example_module.views.module_welcome_screen'),
+    # ('.*', 'app.{< app_name >}.views.some_view'),
 )

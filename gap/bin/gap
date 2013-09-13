@@ -39,6 +39,7 @@ def start_project(project_name, path=None):
     os.mkdir(path)
     _copy_resource(join(TEMPLATES_DIR, 'src'), join(path, 'src'), context)
     _copy_resource(join(TEMPLATES_DIR, 'bin'), join(path, 'bin'), context)
+    os.mkdir(join(path, '.tmp'))
 
 
 def start_app(app_name):

@@ -26,8 +26,6 @@ def fix_sys_path(app_src=None):
         _PATH_FIXED = 2
 
 
-
-
 def build_stubs():
     from google.appengine.api import apiproxy_stub_map
 
