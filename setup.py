@@ -21,6 +21,7 @@ setup(
     packages=['gap', 'gap.utils'],
     scripts=['gap/bin/gap'],
     # data_files=collect_files('templates', 'gap'),
+    package_data={'gap': ['templates/*']},
     include_package_data=True,
     requires=[],
 )
