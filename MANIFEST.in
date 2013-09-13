@@ -1,1 +1,1 @@
-include_recursive templates *.*
+recursive-include templates *.*
