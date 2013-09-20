@@ -54,6 +54,17 @@ def start_app(app_name):
         _error('Path %r does not exist. Are you sure you are in root of the project?' % path)
     _copy_resource(join(TEMPLATES_DIR, 'module'), path, context)
 
+def install_from_git(repo_uri):
+    if exists('src/app.yaml'):
+        branch = 'master'
+        if '#' in repo_uri:
+            repo_uri, branch = repo_uri.rsplit('#', 1)
+        cmd = 'git archive --remote=%r %r | tar x' % (repo_uri, branch)
+        print cmd
+        os.system(cmd)
+    else:
+        _error('Seems that we are not in a project root.')
+
 
 def _error(message, exit=1):
     print 'E: %s' % message

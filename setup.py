@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import os
-from setuptools import setup, findall, find_packages
+from setuptools import setup, findall
 from collections import defaultdict
 
 def collect_files(path, prefix=''):
