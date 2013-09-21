@@ -1,5 +1,5 @@
 #!/usr/bin/env python2
-# Copyright 2007 Robin Gottfried <copyright@kebet.cz>
+# Copyright 2007 Robin Gottfried <google@kebet.cz>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -76,6 +76,9 @@ def list_distribution_paths(dist_name):
     path = join(distribution.location, distribution.egg_name() + '.egg-info', 'top_level.txt')
     if not exists(path):
         path = join(distribution.location, dist_name + '.egg-info', 'top_level.txt')
+    if not exists(path):
+        path = join(distribution.location, 'EGG-INFO', 'top_level.txt')
+
     if path.startswith(environ['VIRTUAL_ENV']):
         paths = []
         for package in [ line.strip() for line in open(path).readlines() ]:
