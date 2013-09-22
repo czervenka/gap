@@ -27,6 +27,8 @@ How to use (fill) the gap?
 * You can use any lib you have installed using gip in your project (in dev_server,
   shell as well as on appengine server).
 
+See [Gap wiki page](https://github.com/czervenka/gap/wiki) for more informations.
+
 Any ideas, thoughts, fixes (specially corrections of my english :) are welcome!
 
 
