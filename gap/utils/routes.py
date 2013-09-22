@@ -16,11 +16,12 @@
 # @author Robin Gottfried <google@kebet.cz>
 # part of gap project (https://github.com/czervenka/gap)
 
+from types import StringTypes
+
 from webapp2_extras.routes import PathPrefixRoute
 from webapp2 import Router
-from utils.imports import import_class
-from types import StringTypes
-from collections import Iterable
+from gap.utils.imports import import_class
+
 
 def include(prefix, routes):
     if isinstance(routes, StringTypes):
