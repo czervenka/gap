@@ -1,0 +1,2 @@
+#!bin/gip
+# PIP requirements list. Installable using bin/gip install -r requirements.gip
