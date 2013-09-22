@@ -19,6 +19,8 @@ import os
 from setuptools import setup, findall
 from collections import defaultdict
 
+__version__ = '0.3'
+
 try:
     import multiprocessing
 except ImportError:
@@ -35,7 +37,7 @@ def collect_files(path, prefix=''):
 
 setup(
     name='gap',
-    version='0.2',
+    version=__version__,
     description='Google App Engine project bootstrap',
     author='Robin Gottfried',
     author_email='google@kebet.cz',
@@ -47,4 +49,9 @@ setup(
     requires=[],
     test_loader='gap.tests.run_tests:TestLoader',
     test_suite='gap.tests',
+    tests_require=[
+        'nose',
+        'nosegae',
+        'mock',
+    ],
 )
