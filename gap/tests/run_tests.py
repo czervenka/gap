@@ -19,7 +19,7 @@ os.chdir(dirname(__file__))
 sys.path.insert(0, realpath(dirname(__file__)))
 
 CONFIG = nose.config.Config(
-    verbosity=2,
+    verbosity=1,
     loggingLevel=logging.WARNING,
     withGae=1,
     withoutSandbox=1,
