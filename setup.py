@@ -15,11 +15,12 @@
 #
 # @author Robin Gottfried <google@kebet.cz>
 # part of gap project (https://github.com/czervenka/gap)
+__version__ = '0.4'
+
 import os
 from setuptools import setup, findall
 from collections import defaultdict
 
-__version__ = '0.3'
 
 try:
     import multiprocessing
