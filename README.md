@@ -24,8 +24,8 @@ How to use (fill) the gap?
 * To create a new module in your application run
     gap start-app <your_module_name>
 * Keep your code inside src/app.
-* You can use any lib you have installed using gip in you code (dev_server,
-  shell as well as after uploading to server).
+* You can use any lib you have installed using gip in your project (in dev_server,
+  shell as well as on appengine server).
 
 Any ideas, thoughts, fixes (specially corrections of my english :) are welcome!
 
