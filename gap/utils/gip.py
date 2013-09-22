@@ -34,7 +34,7 @@ import pip
 
 if not 'VIRTUAL_ENV' in environ:
     print 'Gae pip can work only in virtua environment'
-    sys.exit(1)
+    exit(1)
 
 IGNORED_DISTS = set(['setuptools', 'ipython', 'argparse', 'pip', 'rvirtualenv'])
 
