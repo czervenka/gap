@@ -41,7 +41,6 @@ def fix_sys_path(app_src=None):
 
     if app_src and _PATH_FIXED < 2:
         sys.path.insert(0, app_src)
-        import app
         _PATH_FIXED = 2
 
 def read_yaml(app_src):
@@ -69,6 +68,7 @@ def setup_stubs(app_src):
             'datastore',
             datastore_file_stub.DatastoreFileStub(app_id=read_yaml(app_src)['application'], datastore_file=join(dirname(app_src), '.tmp', 'test1.db'))
     )
+    import app
 
 
 def setup_testbed():
@@ -81,4 +81,5 @@ def setup_testbed():
     t.init_memcache_stub()
     t.init_urlfetch_stub()
     t.get_stub('urlfetch')
+    import app
     return t
