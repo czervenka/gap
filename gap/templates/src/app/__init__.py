@@ -20,18 +20,14 @@ __author__ = 'Robin Gottfried <google@kebet.cz>'
 __all__ = ['prepare_environment']
 
 import sys
-from os.path import dirname, join
-
-def prepare_environment():
-    sys.path.insert(0, join(dirname(dirname(__file__)), 'lib'))
-
-prepare_environment()
-
-
+from os.path import dirname, realpath, join
+sys.path.insert(0, join(dirname(dirname(realpath(__file__))), 'lib'))
 
 import webapp2
-from google.appengine.ext.webapp import util
-import config
 from routes import routes
 
-handler = webapp2.WSGIApplication(routes=routes, debug=config.DEBUG)
+
+
+from gap.conf import settings
+
+handler = webapp2.WSGIApplication(routes=routes, debug=settings['DEBUG'])
