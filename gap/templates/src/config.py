@@ -1,11 +1,18 @@
 import os
 
-
 ROOT_PATH = os.path.dirname(__file__)
 
+# Template paths in the order in which they are resolved
+TEMPLATES_PATH = (
+    os.path.join(ROOT_PATH, 'templates'),
+)
 
-DEBUG = True
+# needs to point to the same path / uri as in app.yaml
+STATIC_PATH = os.path.join(ROOT_PATH, 'static')
+STATIC_URL = '/static'
 
-TEMPLATES_PATH = os.path.join(ROOT_PATH, 'templates')
-STATIC_PATH = os.path.join(ROOT_PATH, 'static')  # needs to point to the same path as in app.yaml
-STATIC_URL = '/static'  # needs to point to the same url as in app.yaml
+# default settings when not set in gap.conf.settings
+DEFAULT_SETTINGS = {
+    'DEBUG': True  # set to False on production server !!
+}
+
