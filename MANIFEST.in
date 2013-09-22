@@ -1,1 +1,2 @@
 recursive-include gap/templates *
+exclude *.pyc
