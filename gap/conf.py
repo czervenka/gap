@@ -41,6 +41,10 @@ from uuid import uuid1
 
 from google.appengine.ext import ndb
 from google.appengine.api import memcache
+try:
+    from config import DEFAULT_SETTINGS
+except ImportError:
+    DEFAULT_SETTINGS = {}
 
 
 class AppSettings(ndb.Expando):
@@ -114,12 +118,14 @@ class SettingsDict(object):
 
                 value.__setattribute__ = new_setter
             return value
+        elif key in DEFAULT_SETTINGS:
+            return DEFAULT_SETTINGS[key]
         else:
             raise KeyError('Key %s not found.' % key)
 
     # @ndb.transactional
     def __setitem__(self, key, value):
-        if not key in self:
+        if not key in self and key not in DEFAULT_SETTINGS:
             raise KeyError("Settings property %r is not defined yet. Please use add_key method to add new property." % key)
         setattr(self._data, key, value)
         self.save()
