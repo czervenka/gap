@@ -1,6 +1,6 @@
 import webapp2
 import config
-from gap.routes import include
+from gap.utils.routes import include
 
 
 routes = (
