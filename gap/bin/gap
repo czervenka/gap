@@ -57,6 +57,7 @@ def start_project(project_name, path=None):
     os.mkdir(path)
     _copy_resource(join(TEMPLATES_DIR, 'src'), join(path, 'src'), context)
     _copy_resource(join(TEMPLATES_DIR, 'bin'), join(path, 'bin'), context)
+    _copy_resource(join(TEMPLATES_DIR, 'tests'), join(path, 'tests'), context)
     os.mkdir(join(path, '.tmp'))
     from gap.utils import gip
     gip.update_symlinks(join(path, 'src', 'lib'))
