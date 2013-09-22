@@ -7,20 +7,23 @@ If you are missing
 
 * use of pip with Google App Engine,
 * cooperation of appengine and virtualenv,
-* single python way to add a path to sys.paths,
+* posibility to add any module to your python path without,
 
 then this barebone could be at least an inspiration for you.
 
-How to use it.
+How to use (fill) the gap?
 --
 
-* Clone or download the project somewhere
-* Pip install appengine or download and install Appengine SDK  from
-  https://developers.google.com/appengine/downloads
-* Creatte an virtualenv for you project
-* Add your dependencies to requirements.pip
-* Instal requirements using bin/gip same way as you are used to do it with pip
-* Start building your application under package src/app
+* Install [Google Appengine SDK](https://developers.google.com/appengine/downloads)
+* Create a virtualenv for you project (not necessary but recomended)
+* pip install gap
+* Go to directory of your new GAE project.
+* gap start-project <your_application_id>
+* Add your dependencies to requirements.gip (format of pip [requirements file](http://www.pip-installer.org/en/latest/cookbook.html))
+* Install any packages using bin/gip same way as you are used to do it with pip.
+* To create a new module in your application run
+    gap start-app <your_module_name>
+* Keep your code inside src/app.
 * You can use any lib you have installed using gip in you code (dev_server,
   shell as well as after uploading to server).
 
