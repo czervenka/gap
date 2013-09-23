@@ -15,7 +15,7 @@
 #
 # @author Robin Gottfried <google@kebet.cz>
 # part of gap project (https://github.com/czervenka/gap)
-__version__ = '0.4.4'
+__version__ = '0.4.6'
 
 import os
 from os.path import join, dirname
@@ -50,6 +50,7 @@ setup(
     packages=['gap', 'gap.utils'],
     scripts=['gap/bin/gap'],
     zip_safe = False,
+    license='Apache License 2.0',
     requires=['pip', 'ipython', ],
     include_package_data=True,
     test_loader='gap.tests.run_tests:TestLoader',
