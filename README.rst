@@ -16,7 +16,8 @@ How to use (fill) the gap?
 
 Short version
 -------------
-- create virtualenv::
+- create virtualenv
+::
 
     > pip install gap
     > gap start-project <applicationid>
