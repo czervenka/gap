@@ -30,19 +30,19 @@ Long version
 1.   Install
      `Google Appengine SDK <https://developers.google.com/appengine/downloads>`__
 2.   Create a `virtualenv <http://www.virtualenv.org/en/latest/>`__ for you project
-3.   (optional) ``easy_install pip``
-3.   ``pip install gap``
-4.   Go to directory where you want to create your GAE project.
-5.   ``gap start-project <projectname>``  # <projectname> will be used as applicationId
-6.   Add your dependencies to requirements.gip (format is the same as pip
+3.   if necessary ``easy_install pip``
+4.   run ``pip install gap``
+5.   Go to directory where you want to create your GAE project.
+6.   run ``gap start-project <projectname>``  # <projectname> will be used as applicationId
+7.   Add your dependencies to requirements.gip (format is the same as pip
      `requirements file <http://www.pip-installer.org/en/latest/cookbook.html>`__) and
      run ``bin/gip install -r requirements.gip``
-7.   or install any packages using bin/gip same way as you are used to do it
+8.   or install any packages using bin/gip same way as you are used to do it
      with pip.
-8.   To create a new module in your application run ``gap start-app <module_name>``
-9.   Keep your code inside ``src/app``
+9.   To create a new module in your application run ``gap start-app <module_name>``
+10.  Keep your code inside ``src/app``
      (see ``wiki::Pip support <https://github.com/czervenka/gap/wiki/Pip-support>`` for details).
-10.  Libraries installed using gip are accessible in dev_server as well as on GAE servers.
+11.  Libraries installed using gip are accessible in dev_server as well as on GAE servers.
 
 See `Gap wiki page <https://github.com/czervenka/gap/wiki>`__ for more
 informations.
