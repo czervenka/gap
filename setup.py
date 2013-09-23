@@ -15,9 +15,10 @@
 #
 # @author Robin Gottfried <google@kebet.cz>
 # part of gap project (https://github.com/czervenka/gap)
-__version__ = '0.4.2'
+__version__ = '0.4.4'
 
 import os
+from os.path import join, dirname
 from setuptools import setup, findall
 from collections import defaultdict
 
@@ -35,12 +36,14 @@ def collect_files(path, prefix=''):
         ret[os.path.join(prefix,os.path.dirname(f))].append(f)
     return ret.items()
 
+long_description=open(join(dirname(__file__), 'README.rst')).read()
+long_description += '\n\nChanges\n=======\n' + open(join(dirname(__file__), 'changes.rst')).read()
 
 setup(
     name='gap',
     version=__version__,
     description='Google App Engine project bootstrap',
-    long_description=open(os.path.join(os.path.dirname(__file__), 'README.rst')).read(),
+    long_description=long_description,
     author='Robin Gottfried',
     author_email='google@kebet.cz',
     url='https://github.com/czervenka/gap',
