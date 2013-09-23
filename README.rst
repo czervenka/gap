@@ -35,9 +35,9 @@ Long version
 4.   Go to directory where you want to create your GAE project.
 5.   ``gap start-project <projectname>``  # <projectname> will be used as applicationId
 6.   Add your dependencies to requirements.gip (format is the same as pip
-    `requirements file <http://www.pip-installer.org/en/latest/cookbook.html>`__) and
-    run ``bin/gip install -r requirements.gip``
-7.   ... or install any packages using bin/gip same way as you are used to do it
+     `requirements file <http://www.pip-installer.org/en/latest/cookbook.html>`__) and
+     run ``bin/gip install -r requirements.gip``
+7.   or install any packages using bin/gip same way as you are used to do it
      with pip.
 8.   To create a new module in your application run ``gap start-app <module_name>``
 9.   Keep your code inside ``src/app``
