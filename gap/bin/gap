@@ -24,7 +24,7 @@ import stat
 import re
 from copy import deepcopy
 from pkg_resources import resource_filename
-from shutil import copytree
+from shutil import copytree, copyfile
 
 
 TEMPLATES_DIR = 'templates'
@@ -45,10 +45,14 @@ def _render_inplace(path, context={}):
 
 def _copy_resource(resource, destination, context={}):
     resource_path = resource_filename('gap', resource)
-    copytree(resource_path, destination)
-    for root, dirs, files in os.walk(destination, topdown=False):
-        for name in files:
-            _render_inplace(join(root, name), context)
+    if os.path.isdir(resource_path):
+        copytree(resource_path, destination)
+        for root, dirs, files in os.walk(destination, topdown=False):
+            for name in files:
+                _render_inplace(join(root, name), context)
+    else:
+        copyfile(resource_path, destination)
+        _render_inplace(destination, context)
 
 
 def start_project(project_name, path=None):
@@ -65,6 +69,7 @@ def start_project(project_name, path=None):
     os.mkdir(path)
     _copy_resource(join(TEMPLATES_DIR, 'src'), join(path, 'src'), context)
     _copy_resource(join(TEMPLATES_DIR, 'bin'), join(path, 'bin'), context)
+    _copy_resource(join(TEMPLATES_DIR, 'requirements.gip'), join(path, 'requirements.gip'), context)
     for root, dirs, files in os.walk(join(path, 'bin')):
         for file_ in files:
             _chmod_exec(join(root, file_))
