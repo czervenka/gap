@@ -15,7 +15,7 @@
 #
 # @author Robin Gottfried <google@kebet.cz>
 # part of gap project (https://github.com/czervenka/gap)
-__version__ = '0.4.1'
+__version__ = '0.4.2'
 
 import os
 from setuptools import setup, findall
@@ -40,6 +40,7 @@ setup(
     name='gap',
     version=__version__,
     description='Google App Engine project bootstrap',
+    long_description=open(os.path.join(os.path.dirname(__file__), 'README.rst')).read(),
     author='Robin Gottfried',
     author_email='google@kebet.cz',
     url='https://github.com/czervenka/gap',

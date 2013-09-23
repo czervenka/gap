@@ -7,7 +7,7 @@ If you are missing
 
 * use of pip with Google App Engine,
 * cooperation of appengine and virtualenv,
-* posibility to add any module to your python path without,
+* posibility to add any module to your python path,
 
 then this barebone could be at least an inspiration for you.
 
