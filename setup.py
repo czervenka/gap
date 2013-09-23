@@ -15,11 +15,12 @@
 #
 # @author Robin Gottfried <google@kebet.cz>
 # part of gap project (https://github.com/czervenka/gap)
+__version__ = '0.4.1'
+
 import os
 from setuptools import setup, findall
 from collections import defaultdict
 
-__version__ = '0.3'
 
 try:
     import multiprocessing
@@ -45,8 +46,8 @@ setup(
     packages=['gap', 'gap.utils'],
     scripts=['gap/bin/gap'],
     zip_safe = False,
+    requires=['pip', 'ipython', ],
     include_package_data=True,
-    requires=[],
     test_loader='gap.tests.run_tests:TestLoader',
     test_suite='gap.tests',
     tests_require=[
