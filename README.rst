@@ -16,7 +16,7 @@ How to use (fill) the gap?
 
 Short version
 -------------
-create virtualenv
+workon <myvirtualenv>
 ::
 
     > pip install gap
@@ -40,11 +40,9 @@ Long version
 8.   or install any packages using bin/gip same way as you are used to do it
      with pip.
 9.   To create a new module in your application run ``gap start-app <module_name>``
-10.  Keep your code inside ``src/app``
-     (see ``wiki::Pip support <https://github.com/czervenka/gap/wiki/Pip-support>`` for details).
-11.  Libraries installed using gip are accessible in dev_server as well as on GAE servers.
+10.  Libraries installed using gip are accessible in dev_server as well as on GAE servers.
 
-See `Gap wiki page <https://github.com/czervenka/gap/wiki>`__ for more
+See `Gap documentation on github <https://github.com/czervenka/gap/blob/master/doc/index.rst>`__ for more
 informations.
 
 Any ideas, thoughts, fixes (specially corrections of my English :) are
