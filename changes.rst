@@ -1,3 +1,7 @@
+Version 0.4.7
+-------------
+- documentation (see `doc/index.rst` or on `github <http://github.com/czervenka/gap/master/doc/index.rst>`__)
+
 Version 0.4.3, 0.4.5
 --------------------
 - fixed missing README.rst in MANIFEST.in (sorry)

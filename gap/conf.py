@@ -126,7 +126,7 @@ class SettingsDict(object):
     # @ndb.transactional
     def __setitem__(self, key, value):
         if not key in self and key not in DEFAULT_SETTINGS:
-            raise KeyError("Settings property %r is not defined yet. Please use add_key method to add new property." % key)
+            raise KeyError("Settings property %r is not defined yet. Please use add_setting method to add new property." % key)
         setattr(self._data, key, value)
         self.save()
 

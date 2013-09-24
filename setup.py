@@ -25,6 +25,7 @@ from setuptools import setup, findall
 from collections import defaultdict
 
 
+# hack to prevent Exceptions after running setup.py test
 try:
     import multiprocessing
 except ImportError:
@@ -53,7 +54,7 @@ setup(
     scripts=['gap/bin/gap'],
     zip_safe = False,
     license='Apache License 2.0',
-    requires=['pip', 'ipython', ],
+    requires=['pip', ],
     include_package_data=True,
     test_loader='gap.tests.run_tests:TestLoader',
     test_suite='gap.tests',
