@@ -15,7 +15,9 @@
 #
 # @author Robin Gottfried <google@kebet.cz>
 # part of gap project (https://github.com/czervenka/gap)
-__version__ = '0.4.6'
+from gap import VERSION
+
+VERSION_STRING = '.'.join([str(v) for v in VERSION])
 
 import os
 from os.path import join, dirname
@@ -41,7 +43,7 @@ long_description += '\n\nChanges\n=======\n' + open(join(dirname(__file__), 'cha
 
 setup(
     name='gap',
-    version=__version__,
+    version= VERSION_STRING,
     description='Google App Engine project bootstrap',
     long_description=long_description,
     author='Robin Gottfried',

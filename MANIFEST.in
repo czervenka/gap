@@ -1,3 +1,2 @@
 recursive-include gap/templates *
-exclude *.pyc
 include README.rst changes.rst
