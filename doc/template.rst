@@ -41,5 +41,14 @@ Gap templates are only preconfigured `Jinja2 templates <http://jinja.pocoo.org/d
 
 Gap's ``get_template`` setups Jinja2 environment with
 
-- auto escape option set to on,
-- sets template loader to look in folders defined in `config.py:TEMPLATES_PATH <../gap/templates/src/config.py>`__. The default lookup folder is ``src/templates``.
+- `autoescape <http://jinja.pocoo.org/docs/api/#autoescaping>`__ option set to ON,
+- sets `FileSystemLoader <http://jinja.pocoo.org/docs/api/#jinja2.FileSystemLoader>`__ to load templates from folders defined in `config.py:TEMPLATES_PATH <../gap/templates/src/config.py>`__. The default lookup folder is ``src/templates`` in your project.
+
+You can easy add more folder (ie. for modules or your own apps) by editing config.py:
+
+.. code:: python
+
+        TEMPLATES_PATH = (
+            os.path.join(ROOT_PATH, 'app/myapp/templates',  # relative to 'src' directory
+            os.path.join(ROOT_PATH, 'templates'),
+        )
