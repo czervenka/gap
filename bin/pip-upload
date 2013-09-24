@@ -1,0 +1,25 @@
+#!/bin/zsh
+
+set -e
+
+cd $(dirname `dirname $0`)
+
+source ~/bin/venv.sh
+
+mkvirt gap-test
+workon gap-test
+./setup.py -q install
+./setup.py -q test
+if [ "$1" != "proof" ]; then
+    ./setup.py -q sdist upload
+    bin/tag
+fi
+cd /tmp
+pip uninstall -qy gap
+pip install -q gap
+gapver=`pip freeze | grep gap`
+deactivate
+rmvirt gap-test
+
+[ "$1" = "proof" ] && echo -en "\e[31m!!! PROOF !!!\e[0m"
+echo "\e[34mOK\e[0m! (pip installed gap version = $gapver)"

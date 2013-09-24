@@ -1,0 +1,3 @@
+#!/bin/sh
+
+git tag  `eval "echo $(cat setup.py| grep ^__version__ | awk '{print $3}')"`
