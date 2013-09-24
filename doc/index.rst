@@ -1,3 +1,5 @@
+This is first draft of documentation.
+
 - `gip - pip installer for GAE project <gip.rst>`__
 - `How to extend Gap <modules.rst>`__
 - `routing <routes.rst>`__
