@@ -15,15 +15,15 @@ Exaple:
     .. code:: python
 
         >>> settings['my_setting']
-        KeyError('Key "my_setting" not found.")
+        KeyError> 'Key "my_setting" not found."
     
     Writing to unset key will raise KeyError as well
     
     .. code:: python
     
         >>> settings['my_settings'] = 1
-        KeyError(KeyError: "Settings property 'my_settings' is not defined yet.\
-        Please use add_setting method to add new property.")
+        KeyError: "Settings property 'my_settings' is not defined yet."
+                  "Please use add_setting method to add new property."
         
     You have to register new settings using add_setting
     
