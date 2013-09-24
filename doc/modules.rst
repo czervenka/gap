@@ -15,7 +15,7 @@ Gap prefers explicit before implicit magic. Better to direct developer to few va
 Gap is still written with regard to extension packages:
     
 routes:
-    Common way to add routes easily is to use gap.utils.routes.include. Your routes can be set to ie. /mypackage/.* by editing `src/route <https://github.com/czervenka/gap/blob/versions/0.4.7/gap/templates/src/routes.py>`__ file:
+    Common way to add routes easily is to use gap.utils.routes.include. Your routes can be set to ie. /mypackage/.* by editing `src/route <../gap/templates/src/routes.py>`__ file:
     
     .. code:: python
 
