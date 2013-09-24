@@ -38,3 +38,6 @@ static files:
     
 requirements:
     As extension packages are installable using gip (pip wrapper) use Python distutils to specifie any requirements your package needs to install / test / run.
+    
+
+Example: `Gap Resources package <https://github.com/fragaria/gap-resources>`__
