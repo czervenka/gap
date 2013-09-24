@@ -4,8 +4,8 @@ This is first draft of documentation.
 
 - `gip - pip installer for GAE project <gip.rst>`__
 - `simple routing <routes.rst>`__
-- `settings in GAE storage <settings.rst>`__
-- `templates <template.rst>`__
-- `How to extend Gap <modules.rst>`__
+- `settings - efective cached configuration in storage <settings.rst>`__
+- `templates - preconfigured Jinja2 templates <template.rst>`__
+- `Gap is extensible by packages <modules.rst>`__
 
 Other documentation is on the way.
