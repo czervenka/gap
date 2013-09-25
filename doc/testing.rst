@@ -1,7 +1,7 @@
 Testing
 =======
 
-Tests can save time, help to keep the project bug-poor and are good (and often the only) source
+Tests can save time, help to keep the project bug-poor and are good (and sometimes the only) source
 of up to date documentation.
 
 Gap uses `nose <http://nose.readthedocs.org/en/latest/testing.html>`__ and
