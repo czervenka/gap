@@ -1,4 +1,3 @@
-from gap.conf import settings
 from gap.utils import TestBase
 
 
