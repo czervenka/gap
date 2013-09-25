@@ -117,4 +117,4 @@ and after trial / error I typed magical ``%history``
 \.\. and here we are. Just finish the test commands and fill them to the
 assertXxxx statements. The bin/ipython script sets up the same environment as
 is used in tests. And - what I like - no dev_appserver needs to run to play in
-in ipython and application data are really changed.
+ipython and application data are really changed.
