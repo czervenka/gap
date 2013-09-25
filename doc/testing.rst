@@ -4,7 +4,7 @@ Testing
 Tests can not only save time and help keep project bug-free but tests are often
 the the only source of up to date documentation.
 
-Gap uses `nose <http://nose.readthedocs.org/en/latest/testing.html>` and
+Gap uses `nose <http://nose.readthedocs.org/en/latest/testing.html>`__ and
 `Google's testbed <https://developers.google.com/appengine/docs/python/tools/localunittesting>`__.
 
 Installing test requirements
