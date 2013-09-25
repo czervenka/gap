@@ -1,11 +1,14 @@
 routes
 ======
 
-Url routing to views is realized using `webapp2 routes <http://webapp-improved.appspot.com/guide/routing.html>`__ included in Google Appengine.
+Url routing to views is realized using `webapp2 routes
+<http://webapp-improved.appspot.com/guide/routing.html>`__ included in Google
+Appengine.
 
-The generated project is set to allow include routes recursively. Gap provides special route ``include`` for this purpose.
+The generated project is set to allow include routes recursively. Gap provides
+special route ``include`` for this purpose.
 
-example:
+Example:
     src/routes.py:
 
     .. code:: python
@@ -26,9 +29,14 @@ example:
             ('/someotherpath', 'path.to.your.views.otherview'),
         )
         
-    This way url request to ``/somepath/someotherpath`` will be routed to ``otherview`` in ``path/to/your/views.py``. 
+    This way url request to ``/somepath/someotherpath`` will be routed to
+    ``otherview`` in ``path/to/your/views.py``. 
 
-``include`` tries to be inteligent and resolve module path string to real module. If the module / package contains ``routes`` variable, it is used as the list of routes to be included. Otherwise, the path is assumed to be routes list.
+``include()`` tries to be intelligent and resolve module path string to real
+module. If the module / package contains ``routes`` variable, it is used as the
+list of routes to be included. Otherwise, the path is assumed to be routes
+list.
+
 You can provide real list or module by as well:
 
 .. code:: python
@@ -37,7 +45,7 @@ You can provide real list or module by as well:
     
     routes = (
         # other routes
-        include('/soumepath', module.routes),
+        include('/somepath', module.routes),
     )
 
 See `src/routes.py <../gap/templates/src/routes.py>`__ for example of use.

@@ -1,9 +1,11 @@
 settings
 ========
 
-Gap supports `settings <../gap/conf.py>`__ stored in GAE storrage. Settings are heavily cached and changes are propagated across threads and frontends (both using memcached).
+Gap supports `settings <../gap/conf.py>`__ stored in GAE storage. Settings are
+heavily cached and changes are propagated across threads and frontends (both
+using memcached).
 
-Exaple:
+Example:
     .. code:: python
     
         >>> from gap.conf import settings
@@ -15,7 +17,7 @@ Exaple:
     .. code:: python
 
         >>> settings['my_setting']
-        KeyError> 'Key "my_setting" not found."
+        KeyError: 'Key "my_setting" not found.'
     
     Writing to unset key will raise KeyError as well
     
@@ -39,13 +41,19 @@ Exaple:
 
         >>> settings.del_setting('my_setting')
         >>> settings['my_setting']
-        KeyError('Key "my_setting" not found.")
+        KeyError('Key "my_setting" not found.')
 
 
-The `settings object <../gap/conf.py>`__ is optimized for reading not for writing (which is most common way of using settings).
+The `settings object <../gap/conf.py>`__ is optimized for reading not for
+writing (which is most common way of using settings).
 
-Reading is cheap and lazy. The actual data are being read from storrage when first value is read on frontend and the data are stored in package until frontend shutdown or reload triggered by modification on other fronted.
+Reading is cheap and lazy. The actual data are being read from storage when
+first value is read on frontend and the data are stored in package until
+frontend shutdown or reload triggered by modification on other fronted.
 
-When a value is modified, settings writes it immediately to storage and propagates the change to the other fronteds (using memcache).
+When a value is modified, settings writes it immediately to storage and
+propagates the change to the other fronteds (using memcache).
 
-Be careful, there is now locking mechanism. Your application logic must supply a mechanism how to prevent concurent writes to settings from paraller threads/frontends (this can change in future).
+Be careful, there is now locking mechanism. Your application logic must supply
+a mechanism how to prevent concurrent writes to settings from parallel
+threads/frontends (this can change in future).
