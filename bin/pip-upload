@@ -77,7 +77,7 @@ _main() {
         ./setup.py -q sdist upload || (_err "Failed to build and upload version `_get_version`."; exit 255;)
         _git_tag
         _info "Gap-`_get_version` installed on pip."
-    else:
+    else
         _info "SKIPPING: Gap-`_get_version` installation on pip."
     fi
     if ! _check_pypi_pkg; then
