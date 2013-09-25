@@ -69,7 +69,7 @@ shows that gae datastore and memcached services are working in the test
 environment. This is main benefit of TestBase class.
 
 bin/ipython
------------
+~~~~~~~~~~~
 
 There are two scenarios when you start writing test.
 
