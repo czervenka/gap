@@ -1,10 +1,10 @@
 Testing
 =======
 
-Tests can not only save time and help keep project bug-free but tests are often
-the the only source of up to date documentation.
+Tests can save time, help to keep the project bug-poor and are good (and sometimes the only) source
+of up to date documentation.
 
-Gap uses `nose <http://nose.readthedocs.org/en/latest/testing.html>` and
+Gap uses `nose <http://nose.readthedocs.org/en/latest/testing.html>`__ and
 `Google's testbed <https://developers.google.com/appengine/docs/python/tools/localunittesting>`__.
 
 Installing test requirements
@@ -69,7 +69,7 @@ shows that gae datastore and memcached services are working in the test
 environment. This is main benefit of TestBase class.
 
 bin/ipython
------------
+~~~~~~~~~~~
 
 There are two scenarios when you start writing test.
 
@@ -117,4 +117,4 @@ and after trial / error I typed magical ``%history``
 \.\. and here we are. Just finish the test commands and fill them to the
 assertXxxx statements. The bin/ipython script sets up the same environment as
 is used in tests. And - what I like - no dev_appserver needs to run to play in
-in ipython and application data are really changed.
+ipython and application data are really changed.
