@@ -1,6 +1,17 @@
+Version 0.4.8
+-------------
+- mainly enhancements in test suite
+  1. executable flag on run_test
+  2. added base class for testing views
+  3. support for rednose in tests (rednose seems not compatible with multiprocess plugin)
+  4. Test* classes not imported in utils.__init__ (forced test requirements even when running gap project)
+  5. test requirements ignored by gip (not usefull on production)
+- fixed link in changelog
+- extended Route class which can better handle ending slash
+
 Version 0.4.7
 -------------
-- documentation (see `doc/index.rst` or on `github <http://github.com/czervenka/gap/master/doc/index.rst>`__)
+- documentation (see `doc/index.rst` or on `github <https://github.com/czervenka/gap/blob/master/doc/index.rst>`__)
 
 Version 0.4.3, 0.4.5
 --------------------
