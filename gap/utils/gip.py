@@ -36,7 +36,21 @@ if not 'VIRTUAL_ENV' in environ:
     print 'Gae pip can work only in virtua environment'
     exit(1)
 
-IGNORED_DISTS = set(['setuptools', 'ipython', 'argparse', 'pip', 'rvirtualenv'])
+IGNORED_DISTS = set([
+    'setuptools',
+    'ipython',
+    'argparse',
+    'pip',
+    'rvirtualenv',
+    'nose',
+    'nosegae',
+    'rednose',
+    'termstyle',
+    'waitress',
+    'webob',
+    'webtest',
+    'mock',
+])
 
 LIB_PATH = join(dirname(dirname(__file__)), 'src', 'lib')
 

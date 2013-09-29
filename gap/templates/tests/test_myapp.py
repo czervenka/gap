@@ -1,4 +1,4 @@
-from gap.utils import TestBase
+from gap.utils.tests import TestBase
 
 
 class TestMyApplication(TestBase):

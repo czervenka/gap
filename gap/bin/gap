@@ -73,6 +73,7 @@ def start_project(project_name, path=None):
     for root, dirs, files in os.walk(join(path, 'bin')):
         for file_ in files:
             _chmod_exec(join(root, file_))
+    _chmod_exec(join(root, 'tests', 'run_tests.py'))
     _copy_resource(join(TEMPLATES_DIR, 'tests'), join(path, 'tests'), context)
     os.mkdir(join(path, '.tmp'))
     from gap.utils import gip

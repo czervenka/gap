@@ -20,8 +20,8 @@ __author__ = 'Lukas Lukovsky'
 
 import json
 from unittest import TestCase
+import webtest
 from gap.utils.setup import setup_testbed
-
 
 class TestBase(TestCase):
 
@@ -35,18 +35,36 @@ class TestBase(TestCase):
     def setUpClass(cls):
         # Begin with testbed instance
         cls.testbed = setup_testbed()
+        import app
 
     @classmethod
     def tearDownClass(cls):
         cls.testbed.deactivate()
 
 
-class TestJsonApiBase(TestBase):
+class WebAppTestBase(TestBase):
+    # Allow to share the setUpClass method among all parallel test classes
+    _multiprocess_shared_ = False
 
-    JSON_HEADERS = {'content-type': 'application/json; encoding=utf-8'}
+    # Allow concurrent run of fixtures
+    _multiprocess_can_split_ = False
 
-    def get_json_response(self, url, method, code=200, payload=None, headers=JSON_HEADERS):
-        from google.appengine.api.urlfetch import fetch
-        result = fetch(url, method, payload, headers=headers)
-        self.assertEqual(result.status_code, code)
-        return json.loads(result.content)
+    @classmethod
+    def getApp(cls):
+        '''
+        Returns list of routes or instance of a WSGIApplication.
+        Override this class in your class to test a handler directly.
+        '''
+        from app import handler
+        return handler
+
+    @classmethod
+    def setUpClass(cls):
+        super(WebAppTestBase, cls).setUpClass()
+        app = cls.getApp()
+        if isinstance(app, (list, tuple)):
+            import webapp2
+            testapp = webapp2.WSGIApplication(app)
+        else:
+            testapp = app
+        cls.app = webtest.TestApp(testapp)
