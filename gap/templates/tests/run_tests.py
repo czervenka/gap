@@ -65,7 +65,7 @@ def run_all():
     )
 
 class TestLoader(nose.loader.TestLoader):
-    def __init__():
+    def __init__(self):
         super(self.__class__, self).__init__(config=CONFIG)
 
 if __name__ == '__main__':
