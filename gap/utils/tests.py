@@ -20,7 +20,6 @@ __author__ = 'Lukas Lukovsky'
 
 import json
 from unittest import TestCase
-import webtest
 from gap.utils.setup import setup_testbed
 
 class TestBase(TestCase):
@@ -60,6 +59,7 @@ class WebAppTestBase(TestBase):
 
     @classmethod
     def setUpClass(cls):
+        import webtest
         super(WebAppTestBase, cls).setUpClass()
         app = cls.getApp()
         if isinstance(app, (list, tuple)):

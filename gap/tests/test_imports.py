@@ -1,4 +1,4 @@
-from gap.utils.test_base import TestBase
+from gap.utils.tests import TestBase
 
 from gap.utils.imports import import_class
 
