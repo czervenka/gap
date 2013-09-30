@@ -23,6 +23,8 @@ argv = copy(sys.argv)
 
 try:
     import nose
+    import webtest
+    from nosegae import NoseGAE
 except ImportError:
     if sys.__stdin__.isatty():
         print "Missing testing requirements. Shell I install them for you? [Yn] "
@@ -31,6 +33,8 @@ except ImportError:
             import pip
             pip.main(['install', '-r', 'requirements.pip'])
             import nose
+            import webtest
+            from nosegae import NoseGAE
         else:
             print "Quitting"
             print "You can install requirements by `pip install -r tests/requirements.pip`"
@@ -41,7 +45,6 @@ except ImportError:
 
 from nose.config import Config
 from nose.plugins import DefaultPluginManager
-from nosegae import NoseGAE
 CONFIG = Config(
     files=['nose.cfg'],
     plugins=DefaultPluginManager(plugins=[NoseGAE()])
