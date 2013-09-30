@@ -66,14 +66,18 @@ def unsymlink_module(path, lib_path):
 
 
 def symlink_module(path, lib_path):
-    link_info = (path, join(lib_path, basename(path)))
+    link_info = [path, join(lib_path, basename(path))]
     if not islink(link_info[1]):
         if not exists(link_info[0]):
             print 'Error creating link %s' % link_info[0]
             return
         if exists(link_info[1]):
             print "Error creating link %r, there is another file with the same name." % link_info[1]
-        print '%s -> %s' % link_info
+        if link_info[0].endswith('.pyc') and exists(link_info[0][:-1]):
+            # prefer *.py files (gae does not support pyc files
+            link_info[0] = link_info[0][:-1]
+            link_info[1] = link_info[1][:-1]
+        print '%s -> %s' % tuple(link_info)
         symlink(*link_info)
 
 def list_distributions():
