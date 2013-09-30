@@ -23,4 +23,4 @@ from gap.utils import gip
 
 
 if __name__ == '__main__':
-    gip.run(join(dirname(dirname(__file__)), 'src'))
+    gip.run(join(dirname(dirname(__file__)), 'src', 'lib'))

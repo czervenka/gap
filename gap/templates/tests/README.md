@@ -33,9 +33,10 @@ Good practice
 Meaningful test method name and description
 KISS - keep all tests short and simple (only few lines)
 
-
 Inheriting from TestBase brings plenty of useful self.assert* methods
 (assertEqual, assertIsNotNone, assertRaises, assertTrue...).
 
 Inherit from gap.utils.test_base.TestBase to get class ready for GAE tests
 (with active testbed).
+
+Inherit from gap.utils.tests.WebAppTestBase to start testing views directly.

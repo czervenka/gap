@@ -67,4 +67,8 @@ class WebAppTestBase(TestBase):
             testapp = webapp2.WSGIApplication(app)
         else:
             testapp = app
-        cls.app = webtest.TestApp(testapp)
+        app = webtest.TestApp(testapp)
+        for method in ('get', 'post', 'put', 'delete', 'post_json', 'put_json'):
+            setattr(cls, method, getattr(app, method))
+        cls.app = app
+
