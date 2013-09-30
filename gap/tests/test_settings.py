@@ -1,5 +1,5 @@
 from gap.conf import settings
-from gap.utils.test_base import TestBase
+from gap.utils.tests import TestBase
 
 
 class TestSettings(TestBase):
