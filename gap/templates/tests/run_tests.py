@@ -28,8 +28,8 @@ try:
 except ImportError:
     if sys.__stdin__.isatty():
         print "Missing testing requirements. Shell I install them for you? [Yn] "
-        resp = raw_input().strip()
-        if not resp or resp.strip() in ['y', 'a']:
+        resp = raw_input().strip().lower()
+        if not resp or resp in ['y', 'a']:
             import pip
             pip.main(['install', '-r', 'requirements.pip'])
             import nose
