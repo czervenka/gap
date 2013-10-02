@@ -6,6 +6,7 @@ This is first draft of documentation.
 - `simple routing <routes.rst>`__
 - `settings - efective cached configuration in storage <settings.rst>`__
 - `templates - preconfigured Jinja2 templates <template.rst>`__
+- `tests - how to write and run tests in gap project <testing.rst>`__
 - `Gap is extensible by packages <modules.rst>`__
 
 Other documentation is on the way.

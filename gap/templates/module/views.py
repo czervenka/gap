@@ -1,4 +1,4 @@
-from utils.decorators import as_view
+from gap.utils.decorators import as_view
 
 @as_view
 def module_welcome_screen(request, response):

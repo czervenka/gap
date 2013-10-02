@@ -20,6 +20,7 @@ __author__ = 'Robin Gottfried <google@kebet.cz>'
 import os
 import sys
 from os.path import join, realpath, dirname, exists
+import re
 import stat
 import re
 from copy import deepcopy
@@ -58,6 +59,8 @@ def _copy_resource(resource, destination, context={}):
 def start_project(project_name, path=None):
     context = deepcopy(CONTEXT)
     context['application_id'] = project_name
+    if not re.match('^[a-z0-9][a-z0-9-]{5,}$', project_name):
+        _error("Project name can only contain lower case characters, numbers and '-' and should not start on dash.")
     if path is None:
         path = join(realpath(os.path.curdir), project_name)
     else:
