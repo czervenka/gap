@@ -16,8 +16,9 @@ How to use (fill) the gap?
 
 Short version
 -------------
+workon <myvirtualenv>
 ::
-    > workon <myvirtualenv>
+
     > pip install gap
     > gap start-project <applicationid>
     > cd <applicationid>
@@ -53,3 +54,11 @@ Disclaimer
 Of course ... This code is published in hope that someone will find it
 useful but it is provided as-is and I can take no responsibility for
 improper as well as proper use.
+
+See also
+========
+Enhance GAP with plugins and addons:
+`GAP Resources <https://github.com/fragaria/gap-resources>`__
+`GAP Angular <https://github.com/fragaria/gap-angular>`__
+`GAP Datastore Admin <https://github.com/fragaria/gap-datastoreadmin>`__
+
