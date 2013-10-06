@@ -59,7 +59,8 @@ improper as well as proper use.
 See also
 ========
 Enhance GAP with plugins and addons:
-`GAP Resources <https://github.com/fragaria/gap-resources>`__
-`GAP Angular <https://github.com/fragaria/gap-angular>`__
-`GAP Datastore Admin <https://github.com/fragaria/gap-datastoreadmin>`__
+
+- `GAP Resources <https://github.com/fragaria/gap-resources>`__
+- `GAP Angular <https://github.com/fragaria/gap-angular>`__
+- `GAP Datastore Admin <https://github.com/fragaria/gap-datastoreadmin>`__
 
