@@ -52,6 +52,7 @@ IGNORED_DISTS = set([
     'webob',
     'webtest',
     'mock',
+    'setuptools-dummy',
 ])
 
 LIB_PATH = join(dirname(dirname(__file__)), 'src', 'lib')
