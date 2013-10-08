@@ -39,6 +39,7 @@ if not 'VIRTUAL_ENV' in environ:
 
 IGNORED_DISTS = set([
     'setuptools',
+    'setuptools_dummy',
     'distribute',
     'ipython',
     'argparse',
