@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # Copyright 2007 Robin Gottfried <google@kebet.cz>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,10 +24,12 @@ Simple pip wraper to work with virtual environment and google app engine.
 Use it the same way as pip. Each time gip is called, it updates symlinks to you application src/lib.
 
 While creating / removing symlinks, gip does not touch any regular files / directories in src/lib
+
+TODO: Rewrite :-) ... better to use setuptools or some other library to get distributions and top-level packages/modules
 """
 
 from sys import exit, argv
-from os.path import join, basename, dirname, exists, islink
+from os.path import join, basename, dirname, exists, islink, isdir
 from os import symlink, environ, listdir, unlink
 from time import sleep
 from importlib import import_module
@@ -97,19 +99,30 @@ def list_distribution_paths(dist_name):
     if dist_name in IGNORED_DISTS:
         info('* Exclude %r' % dist_name)
         return []
-    else:
-        info('- Include %r' % dist_name)
     distribution = pkg_resources.get_distribution(dist_name)
     if not str(distribution.location).strip():
-        error("Distribution %r has no location, skipping." % dist_name)
+        info('* Exclude %r (empty location)' % dist_name)
         return []
-    path = join(distribution.location, distribution.egg_name() + '.egg-info', 'top_level.txt')
+    path = join(distribution.location, distribution.egg_name() + '.egg-info')
     if not exists(path):
-        path = join(distribution.location, dist_name + '.egg-info', 'top_level.txt')
+        path = join(distribution.location, dist_name + '.egg-info')
+    if exists(path):
+        if isdir(path):
+            p = join(path, 'top_level.txt')
+            if exists(p):
+                path = p
+            else:
+                info('- Exclude %r (not top_level.txt)' % dist_name)
+                return []
+        else:
+            info('- Exclude %r (unsupported egg format)' % dist_name)
+            return []
     if not exists(path):
         path = join(distribution.location, 'EGG-INFO', 'top_level.txt')
 
     if path.startswith(environ['VIRTUAL_ENV']):
+        info('- Include %r' % dist_name)
+        info('     path: %r / location: %r, name: %r, egg: %r' % (path, distribution.location, dist_name, distribution.egg_name()))
         paths = []
         for package in [ line.strip() for line in open(path).readlines() ]:
             if not package:
@@ -128,6 +141,7 @@ def list_distribution_paths(dist_name):
                     continue
             paths.append(path)
     else:
+        info('* Exclude %r (not in venv)' % dist_name)
         return []
     return paths
 
@@ -143,7 +157,7 @@ def update_symlinks(lib_path):
         for path in list_distribution_paths(dist):
             filename = basename(path)
             installed_libs[filename] = path
-    # print 'Installed libs: %s' % installed_libs
+    info('Installed libs: %s' % installed_libs)
 
     for lib in linked_libs:
         if not lib in installed_libs:
