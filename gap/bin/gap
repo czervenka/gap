@@ -104,6 +104,10 @@ def install_from_git(repo_uri):
     else:
         _error('Seems that we are not in a project root.')
 
+def version():
+    import gap
+    print gap.VERSION
+
 
 def _error(message, exit=1):
     print 'E: %s' % message
