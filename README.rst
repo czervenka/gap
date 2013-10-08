@@ -16,7 +16,7 @@ How to use (fill) the gap?
 
 Short version
 -------------
-workon <myvirtualenv>
+
 ::
 
     > workon <myvirtualenv>
