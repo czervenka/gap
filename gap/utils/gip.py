@@ -50,7 +50,7 @@ IGNORED_DISTS = set([
     'nose',
     'nosegae',
     'rednose',
-    'termstyle',
+    'python-termstyle',
     'waitress',
     'webob',
     'webtest',
