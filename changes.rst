@@ -1,3 +1,11 @@
+Version 0.4.9
+-------------
+- gip
+  1. some packages caused gip not to work properly
+  2. ``-v`` option shows a lot of debug informations
+- minor fixes in documentation
+- invalid import in new poject's views.py
+
 Version 0.4.8
 -------------
 - mainly enhancements in test suite
