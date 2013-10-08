@@ -57,7 +57,7 @@ IGNORED_DISTS = set([
 LIB_PATH = join(dirname(dirname(__file__)), 'src', 'lib')
 
 def error(*args):
-    print ' '.join(args)
+    print '! ' + ' '.join(args)
 
 VERBOSE = 0
 def info(*args):
@@ -99,6 +99,9 @@ def list_distribution_paths(dist_name):
     else:
         info('- Include %r' % dist_name)
     distribution = pkg_resources.get_distribution(dist_name)
+    if not str(distribution.location).strip():
+        error("Distribution %r has no location, skipping." % dist_name)
+        return []
     path = join(distribution.location, distribution.egg_name() + '.egg-info', 'top_level.txt')
     if not exists(path):
         path = join(distribution.location, dist_name + '.egg-info', 'top_level.txt')
