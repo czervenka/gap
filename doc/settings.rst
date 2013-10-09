@@ -77,13 +77,13 @@ Similarly ``settings['myprop'] = 'some_value'`` will
 
 In other words
 
-    .. code:: python
+.. code:: python
 
     config.DEFAULT_VALUES['mykey'] = 1
 
 has same effect as
 
-    .. code:: python
+.. code:: python
 
     import settings
     if not 'mykey' in settings:
@@ -93,18 +93,19 @@ has same effect as
 
 .. code:: python
 
-   # config.py
-   DEFAULT_SETTINGS = {
-       'key_a': None,
-       'key_b': None,
-   }
+    # config.py
+    DEFAULT_SETTINGS = {
+        'key_a': None,
+        'key_b': None,
+    }
+
 .. code:: python
 
-   # app/my_package/my_module.py
-   from gap.conf import settings
-   ...
-   # this works as key_a is in DEFAULT_SETTINGS
-   settings['key_a'] = 1
-   val = settings['key_b']   # val is now None
-   val = settings['key_a']   # val is now 1
-   settings['key_c'] = None  # raises KeyError
+    # app/my_package/my_module.py
+    from gap.conf import settings
+    ...
+    # this works as key_a is in DEFAULT_SETTINGS
+    settings['key_a'] = 1
+    val = settings['key_b']   # val is now None
+    val = settings['key_a']   # val is now 1
+    settings['key_c'] = None  # raises KeyError
