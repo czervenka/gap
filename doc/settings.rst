@@ -57,3 +57,32 @@ propagates the change to the other fronteds (using memcache).
 Be careful, there is now locking mechanism. Your application logic must supply
 a mechanism how to prevent concurrent writes to settings from parallel
 threads/frontends (this can change in future).
+
+Default settings
+----------------
+To add new settings key, just add it to
+``config.DEFAULT_SETTINGS`` dict.
+
+When requesting a settings[key] and the key does not exist yet, it is loaded
+from ``config.DEFAULT_SETTINGS[key]``. Furthermore ``settings[key] = 'some_value'``
+will not raise KeyError if DEFAULT_SETTINGS[key] exists.
+
+Example:
+
+.. code:: python
+
+   # config.py
+   DEFAULT_SETTINGS = {
+       'key_a': None,
+       'key_b': None,
+   }
+.. code:: python
+
+   # app/my_package/my_module.py
+   from gap.conf import settings
+   ...
+   # this works as key_a is in DEFAULT_SETTINGS
+   settings['key_a'] = 1
+   val = settings['key_b']   # val is now None
+   val = settings['key_a']   # val is now 1
+   settings['key_c'] = None  # raises KeyError
