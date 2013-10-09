@@ -63,11 +63,33 @@ Default settings
 To add new settings key, just add it to
 ``config.DEFAULT_SETTINGS`` dict.
 
-When requesting a settings[key] and the key does not exist yet, it is loaded
-from ``config.DEFAULT_SETTINGS[key]``. Furthermore ``settings[key] = 'some_value'``
-will not raise KeyError if DEFAULT_SETTINGS[key] exists.
+``val = settings['mykey']``
 
-Example:
+    1. looks if there is a value for 'mykey' in datastore, otherwise
+    2. looks in ``config.DEFAULT_SETTINGS['mykey']``, otherwise
+    3. raises KeyError
+
+Similarly ``settings['myprop'] = 'some_value'`` will
+    1. looks if there is 'mykey' stored in database,
+    2. looks in ``config.DEFAULT_SETTINGS['mykey']``,
+    3. if found updates/creates value of 'mykey' in datastore, otherwise raises
+       KeyError.
+
+In other words
+
+    .. code:: python
+
+    config.DEFAULT_VALUES['mykey'] = 1
+
+has same effect as
+
+    .. code:: python
+
+    import settings
+    if not 'mykey' in settings:
+        settings['mykey'] = 1
+
+**More complex example:**
 
 .. code:: python
 
