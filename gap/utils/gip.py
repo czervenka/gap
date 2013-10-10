@@ -49,6 +49,7 @@ IGNORED_DISTS = set([
     'rvirtualenv',
     'nose',
     'nosegae',
+    'coverage',
     'rednose',
     'python-termstyle',
     'waitress',
