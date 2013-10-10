@@ -105,7 +105,11 @@ def list_distribution_paths(dist_name):
         return []
     path = join(distribution.location, distribution.egg_name() + '.egg-info')
     if not exists(path):
+        path = join(distribution.location, distribution.egg_name().replace('-', '_') + '.egg-info')
+    if not exists(path):
         path = join(distribution.location, dist_name + '.egg-info')
+    if not exists(path):
+        path = join(distribution.location, dist_name.replace('-', '_') + '.egg-info')
     if exists(path):
         if isdir(path):
             p = join(path, 'top_level.txt')
