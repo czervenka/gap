@@ -20,25 +20,59 @@ _get_version() {
 
 _mk_sdist() {
     cd "$ROOT_PATH"
-    ./setup.py -q sdist || (_err "Building failed."; exit 255;)
+    ./setup.py -q sdist || {_err "Building failed."; return 255;}
     echo "$ROOT_PATH/dist/gap-`_get_version`.tar.gz"
 }
 
 _check_sdist() {
+    echo
+    echo -n '    create dist ... '
     dist=`_mk_sdist`
-    [ -f "$dist" ] || (_err "Source distribution building failed ($sdist)."; exit 255;)
+    if [ -f "$dist" ]; then
+       echo 'OK'
+    else
+       echo 'ERR'
+       _err "Source distribution building failed ($dist)."
+       return 255
+    fi
+    echo -n "    install `basename $dist` ... "
     _mk_virt
     cd "$ROOT_PATH/tmp"
-    pip install --force-reinstall -q $dist
+    if pip install --force-reinstall -q $dist; then
+        _test_ok
+    else
+        _test_err
+    fi
+
+    echo -n "    gap start-project ... "
+    rm -rf gaptestproject
+    if gap start-project gaptestproject 1> /tmp/.gaptestlog 2>/tmp/.gaptestlog; then
+        _test_ok
+    else
+        _test_err
+    fi
+    echo -n "    installing test requirements ... "
+    cd gaptestproject
+    if pip install -q -r tests/requirements.pip; then
+        _test_ok
+    else
+        _test_err
+    fi
+    echo -n "    running tests ... "
+    if tests/run_tests.py 1> /tmp/.gaptestlog 2> /tmp/.gaptestlog; then
+        _test_ok
+    else
+        _test_err
+    fi
+    cd ..
+    rm -rf gaptestproject
     _rm_virt
-    _info "Local source distribution installation succeded."
 }
 
 _check_pypi_pkg() {
     _mk_virt
     pip install -q 'gap=='`_get_version`
     _rm_virt
-    _info "Pip package `_get_version` installation passed."
 }
 
 _git_tag() {
@@ -62,6 +96,25 @@ _err_trap() {
     exit "$CODE"
 }
 
+_test_ok() {
+    echo "\033[32mOK\033[0m"
+}
+
+_test_skipped() {
+    echo "\033[33mSKIPPED\033[0m"
+}
+
+_test_err() {
+    echo "\033[31mERR\033[0m"
+    if [ -f /tmp/.gaptestlog ]; then
+        echo 'Log:'
+        echo -en "\e[93m"
+        cat /tmp/.gaptestlog
+        echo -en "\e[0m"
+    fi
+    exit 255
+}
+
 _main() {
     proof=true
     verbose=false
@@ -80,36 +133,49 @@ _main() {
     echo "Options (Gap $version):"
     echo -n 'Verbose: '; $verbose && echo 'yes' || echo 'no'
     echo -n 'Upload: '; $proof && echo 'no' || echo 'yes'
+    echo
     echo  'Press any key to continue or <ctrl-c> to exit ...'
+    echo
     read -rs -k 1 resp
+
+
     if $verbose; then
         set -x
     fi
-    if $ROOT_PATH/setup.py -q test; then
-        _info "Gap python tests succeded."
+
+    echo -n 'Tests ... '
+    if $ROOT_PATH/setup.py -q test 2> /tmp/.gaptestlog; then
+        _test_ok
     else
-        _err "Gap tests failed."
-        exit 255
-    fi
-    if ! _check_sdist; then
-        _err "Failed to build and install source distribution locally."
-        exit 255
+        _test_err
     fi
 
+    echo -n 'Build:'
+    if ! _check_sdist; then
+        _test_err
+    fi
+
+    echo -n 'Upload to pypi.python.org ... '
     if ! $proof; then
         cd "$ROOT_PATH"
-        ./setup.py -q sdist upload || (_err "Failed to build and upload version $version."; exit 255;)
-        _git_tag
-        _info "Gap-$version installed on pip."
+        if ./setup.py -q sdist upload; then
+            _test_ok
+        else
+            _test_err
+        fi
+        echo -n 'Tagging new version ... '
+        _git_tag && _test_ok || _test_err
+
+        echo -n 'Installing from pypi ... '
+        if _check_pypi_pkg; then
+            _test_ok
+        else
+            _test_err
+        fi
     else
-        _info "SKIPPING: Gap-$version installation on pip."
-    fi
-    if ! _check_pypi_pkg; then
-        _err "Could not install version $version from pip server."
-        exit 255
+        echo "SKIPPED"
     fi
 
-    [ "$1" = "proof" ] && echo -en "\e[31m!!! PROOF !!!\e[0m"
     echo "\e[34mOK\e[0m! (pip installed gap version = $version)"
 }
 
