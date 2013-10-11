@@ -1,11 +1,13 @@
 #!/bin/zsh
-# set -x
+# set -e 
+
 ROOT_PATH="$(cd `dirname $0`/.. && pwd)"
 
 VENV_DIR="$ROOT_PATH/tmp/.gap-test-venv"
+VIRTUALENV_BIN='rvirtualenv'
 
 _mk_virt() {
-    virtualenv -q "$VENV_DIR"
+    $VIRTUALENV_BIN "$VENV_DIR" 2>&1 > /dev/null
 }
 
 _rm_virt() {
@@ -61,6 +63,28 @@ _err_trap() {
 }
 
 _main() {
+    proof=true
+    verbose=false
+    version=`_get_version`
+    while [ ! -z $1 ]; do
+        case $1; in
+            --upload|-u)
+                proof=false
+                ;;
+            --verbose|-v)
+                verbose=true
+                ;;
+        esac
+        shift
+    done
+    echo "Options (Gap $version):"
+    echo -n 'Verbose: '; $verbose && echo 'yes' || echo 'no'
+    echo -n 'Upload: '; $proof && echo 'no' || echo 'yes'
+    echo  'Press any key to continue or <ctrl-c> to exit ...'
+    read -rs -k 1 resp
+    if $verbose; then
+        set -x
+    fi
     if $ROOT_PATH/setup.py -q test; then
         _info "Gap python tests succeded."
     else
@@ -72,21 +96,21 @@ _main() {
         exit 255
     fi
 
-    if [ "$1" != "proof" ]; then
+    if ! $proof; then
         cd "$ROOT_PATH"
-        ./setup.py -q sdist upload || (_err "Failed to build and upload version `_get_version`."; exit 255;)
+        ./setup.py -q sdist upload || (_err "Failed to build and upload version $version."; exit 255;)
         _git_tag
-        _info "Gap-`_get_version` installed on pip."
+        _info "Gap-$version installed on pip."
     else
-        _info "SKIPPING: Gap-`_get_version` installation on pip."
+        _info "SKIPPING: Gap-$version installation on pip."
     fi
     if ! _check_pypi_pkg; then
-        _err "Could not install version `_get_version` from pip server."
+        _err "Could not install version $version from pip server."
         exit 255
     fi
 
     [ "$1" = "proof" ] && echo -en "\e[31m!!! PROOF !!!\e[0m"
-    echo "\e[34mOK\e[0m! (pip installed gap version = $gapver)"
+    echo "\e[34mOK\e[0m! (pip installed gap version = $version)"
 }
 
 
