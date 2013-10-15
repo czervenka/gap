@@ -55,6 +55,7 @@ IGNORED_DISTS = set([
     'waitress',
     'webob',
     'webtest',
+    'pycrypto',
     'mock',
 ])
 
