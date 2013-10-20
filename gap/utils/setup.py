@@ -70,16 +70,27 @@ def setup_stubs(app_src):
     )
     import app
 
-
-def setup_testbed():
+DEFAULT_TESTBEDS = (
+    'datastore',
+    'app_identity',
+    'memcache',
+    'files',
+    'urlfetch',
+    'mail',
+)
+def setup_testbed(stubs=DEFAULT_TESTBEDS, env={}):
     from google.appengine.ext import testbed
     t = testbed.Testbed()
+    if env:
+        t.setup_env(**env)
     t.activate()
-    t.init_datastore_v3_stub()
-    t.init_files_stub()
-    t.init_app_identity_stub()
-    t.init_memcache_stub()
-    t.init_urlfetch_stub()
-    t.get_stub('urlfetch')
+    for stub in stubs:
+        if stub == 'datastore':
+            stub = 'datastore_v3'
+        getattr(t, 'init_%s_stub' % stub)()
+        if stub == 'urlfetch':
+            t.urlfetch_stub = t.get_stub('urlfetch')
+        elif stub == 'mail':
+            t.mail_stub = t.get_stub(testbed.MAIL_SERVICE_NAME)
     import app
     return t
