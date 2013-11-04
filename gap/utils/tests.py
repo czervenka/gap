@@ -128,6 +128,12 @@ class ModelInstanceGenerator(object):
     def _gen_TextProperty(self, prop):
         return self._gen_StringProperty(prop, max_length=self.text_length)
 
+    def _gen_JsonProperty(self, prop):
+        if prop._json_type:
+            return prop._json_type()
+        else:
+            return None
+
     def _gen_BooleanProperty(self, prop):
         return bool(random.randint(0,1))
 
@@ -138,8 +144,7 @@ class ModelInstanceGenerator(object):
     def _gen_DateProperty(self, prop):
         return date.today() + timedelta(random.randint(-self.date_range[0] / 3600, self.date_range[1] / 3600))
 
-    @staticmethod
-    def _gen_DateTimeProperty(prop):
+    def _gen_DateTimeProperty(self, prop):
         return datetime.now() + timedelta(0, random.randint(-self.date_range[0], self.date_range[1]))
 
     def _gen_LocalStructuredProperty(self, prop):
