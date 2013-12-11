@@ -106,12 +106,17 @@ class BatchUpdater(object):
 
 class ModelWalk(BatchUpdater):
 
-    def __call__(self, query, callback, page_size=100):
-        if isinstance(query, ndb.Model):
-            query = query.query()
-        self.page_size = page_size
-        self.query = query
-        self.callback = callback
+    def __call__(self, query, callback, page_size):
+        try:
+            if issubclass(query, ndb.Model):
+                query = query.query()
+            self.page_size = page_size
+            self.query = query
+            self.callback = callback
+            self.start()
+        except Exception, e:
+            logging.exception('Error walking model.')
+            raise
 
     def get_query(self):
         return self.query
