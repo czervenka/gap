@@ -22,7 +22,7 @@ def as_view(func, methods=['get', 'post']):
 
 
     def _handle(self, *args, **kwargs):
-        response = func(self.request, self.response, *args, **kwargs)
+        response = func(self, *args, **kwargs)
         if response is not None:
             self.response.write(response)
 
