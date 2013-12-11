@@ -77,6 +77,7 @@ DEFAULT_TESTBEDS = (
     'files',
     'urlfetch',
     'mail',
+    'search',
 )
 def setup_testbed(stubs=DEFAULT_TESTBEDS, env={}):
     from google.appengine.ext import testbed
