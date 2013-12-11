@@ -49,8 +49,8 @@ class BatchUpdater(object):
             for obj in objects:
                 if self.needs_update(obj):
                     self._objects_updated += 1
-                    self.update_obj(obj)
-                    self._to_put.append(obj)
+                    if not self.update_obj(obj):
+                        self._to_put.append(obj)
         except DeadlineExceededError:
             # page is too large, let's try with a litle shorter steps
             self._flush()
