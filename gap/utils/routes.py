@@ -35,6 +35,41 @@ def include(prefix, routes):
     return PathPrefixRoute(prefix, routes)
 
 
+class BaseRouter(webapp2.Router):
+
+    def _get_filters(self):
+        import config
+        return [import_class(f) for f in getattr(config, 'REQUEST_FILTERS', [])]  # copy
+
+    def _run_filters(self, direction, method, *args):
+        to_return = False
+        filters = self._get_filters()[::direction]
+        for filter_ in filters:
+            if hasattr(filter_, method):
+                if not getattr(filter_, method)(*args):
+                    to_return = False
+                    break
+                else:
+                    to_return = True
+        return to_return
+
+    def _dispatch(self, request, response):
+        self._run_filters(1, 'process_request', request, response)
+        to_return = super(BaseRouter, self).dispatch(request, response)
+        if to_return is not None:  # compatibility with webap2 router
+            response = to_return
+        self._run_filters(-1, 'process_response', request, response)
+        return response
+
+    def dispatch(self, request, response):
+        try:
+            response = self._dispatch(request, response)
+        except Exception, exception:
+            result = self._run_filters(1, 'process_exception', request, response, exception)
+            if not result:
+                raise
+        return response
+
 class RouteEx(webapp2.Route):
     '''
     Adds strict_slash parameter which allows to control wheter urls with and
