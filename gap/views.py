@@ -4,15 +4,15 @@ from StringIO import StringIO
 
 
 @as_view
-def welcome_screen(request, response):
+def welcome_screen(handler):
     return get_template("homepage.html").render({
         'project_name': 'Example project',
     })
 
 
 @as_view
-def not_found(request, response, *args, **kwargs):
-    response.set_status(404)
+def not_found(handler, *args, **kwargs):
+    handler.response.set_status(404)
     text = 'The page you are requesting was not found on this server.'
 
     from gap.conf import settings
