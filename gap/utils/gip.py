@@ -57,6 +57,7 @@ IGNORED_DISTS = set([
     'webtest',
     'pycrypto',
     'mock',
+    'setuptools-dummy',
 ])
 
 LIB_PATH = join(dirname(dirname(__file__)), 'src', 'lib')
